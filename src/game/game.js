@@ -90,6 +90,27 @@ class StartGame {
         this.flag = false;
     }
 
+    flipCard(card, gameOverCb, noMatchCb){
+        if(this.setCard(card.id)){
+            card.flipped = true;
+            if(new_game.secondCard){
+                if(new_game.checkMatch()){
+                    
+                    if(new_game.checkGameOver()){
+                        gameOverCb();
+                    }
+                    this.clearCards();
+                }else{
+
+                    setTimeout(() => {
+                        this.unflipCards()
+                        noMatchCb();
+                    }, 1000);
+                }
+            }
+        }
+    }
+
     unflipCards(){
         this.firstCard.flipped = false;
         this.secondCard.flipped = false;

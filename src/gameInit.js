@@ -14,23 +14,28 @@ export default function GameInit(){
 
     function handleFlip(card){
 
-        if(new_game.setCard(card.id)){
-            card.flipped = true;
-            if(new_game.secondCard){
-                if(new_game.checkMatch()){
-                    if(new_game.checkGameOver()){
-                        setGameOver(true);
-                    }
-                    new_game.clearCards();
-                }else{
+        // if(new_game.setCard(card.id)){
+        //     card.flipped = true;
+        //     if(new_game.secondCard){
+        //         if(new_game.checkMatch()){
+        //             if(new_game.checkGameOver()){
+        //                 setGameOver(true);
+        //             }
+        //             new_game.clearCards();
+        //         }else{
 
-                    setTimeout(() => {
-                        new_game.unflipCards()
-                        setCards([...new_game.cards]);
-                    }, 1000);
-                }
-            }
-        }
+        //             setTimeout(() => {
+        //                 new_game.unflipCards()
+        //                 setCards([...new_game.cards]);
+        //             }, 1000);
+        //         }
+        //     }
+        // }
+        console.log(card);
+        new_game.flipCard(card,
+             () => {setGameOver(true)},
+             () => {setCards([...new_game.cards])});
+
         setCards([...new_game.cards]);
     }
 
