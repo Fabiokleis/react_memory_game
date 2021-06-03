@@ -1,11 +1,11 @@
-import React from "react";
-
+import React, {useContext} from "react";
+import {GameOverCtx} from "../GameOverCtx";
 export default function GameOver(props){
-    
-    return (props.show?
+    const [gameOver, ,restart] = useContext(GameOverCtx);
+    return (gameOver?
         <div id="game_over">
             Play again!
-            <button onClick={props.restart} id="restart">
+            <button onClick={restart} id="restart">
                 <span>Restart</span>
             </button>
         </div>:<div></div>
